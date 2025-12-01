@@ -1,0 +1,13 @@
+{
+  "name": "month5",
+  "version": "1.0.0",
+  "description": "this is for evaluasi pekanan",
+  "license": "ISC",
+  "author": "Baja Malik",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "desc.md"
+  }
+  
+}
