@@ -1,0 +1,6 @@
+Check branches for tugas
+
+
+MAIN 1 = WEEK 1
+MAIN 4 = WEEK 2
+MAIN 3 = WEEK 3
