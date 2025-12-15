@@ -1,5 +1,7 @@
-import  prisma  from '../prisma';
-import { Product } from ".generated/Prisma"
+import prisma from '../prisma';
+import type { Product } from '../generated/client';
+
+// GET ALL
 
 export const getAllProducts = async (): Promise<Product[]> => {
   return await prisma.product.findMany();
@@ -21,7 +23,8 @@ export const createProduct = async (data: {
   name: string; 
   price: number; 
   stock: number;
-  description?: string; 
+  description?: string;
+  categoryId: number; 
 }): Promise<Product> => {
   return await prisma.product.create({
     data: {
@@ -29,6 +32,7 @@ export const createProduct = async (data: {
       description: data.description ?? null,
       price: data.price,
       stock: data.stock,
+      categoryId: data.categoryId
     },
   });
 };

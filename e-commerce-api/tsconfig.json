@@ -48,6 +48,6 @@
     "noEmit": false,
     // "noEmitOnError": true,
   },
-  "include": ["src", "src/prisma.ts"],
+  "include": ["src"],
   "exclude": ["node_modules"]
 }

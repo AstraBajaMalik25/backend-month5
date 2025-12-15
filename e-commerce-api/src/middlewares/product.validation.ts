@@ -1,6 +1,6 @@
 import { body, param, validationResult, type ValidationChain } from 'express-validator';
 import type { Request, Response, NextFunction } from 'express';
-import { errorResponse } from '../utils/response'
+import { errorResponse } from '../utils/response';
 
 // Helper function untuk menjalankan validasi
 export const validate = (validations: ValidationChain[]) => {
