@@ -6,6 +6,8 @@ import productRoutes from './routes/product.route';
 import transactionRoutes from "./routes/transaction.route";
 import userRoutes from './routes/user.route';
 import { errorHandler } from './middlewares/error.handler';
+import authRoutes from './routes/auth.route';
+
 
 const app = express();
 
@@ -41,5 +43,13 @@ app.use(errorHandler);
 app.use("/api", transactionRoutes);
 
 app.use('/api', userRoutes);
+
+app.use('/api/v1', authRoutes);
+
+app.use('/api/auth', authRoutes)
+
+
+
+
 
 export default app;

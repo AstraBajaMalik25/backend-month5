@@ -3,29 +3,32 @@ import * as transactionService from "../services/transaction.service";
 
 export const checkout = async (req: Request, res: Response) => {
   try {
-    const { userId, items } = req.body;
+    const userId = req.user?.id;
+    const { items } = req.body;
+
+    if (!userId) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
     const result = await transactionService.checkout(userId, items);
     res.status(201).json(result);
   } catch (error) {
-    console.error("CHECKOUT ERROR 👉", error); // 👈 TAMBAH INI
-    res.status(500).json({
-      message: "Checkout failed",
-      error: String(error),
-    });
+    if (error instanceof Error) {
+      res.status(400).json({ message: error.message });
+    } else {
+      res.status(500).json({ message: "Checkout failed" });
+    }
   }
 };
 
-export const getTransactionById = async (req: Request, res: Response) => {
+export const getDetail = async (req: Request, res: Response) => {
   try {
-    const id = Number(req.params.id);
-    const result = await transactionService.getTransactionById(id);
-
-    if (!result) {
-      return res.status(404).json({ message: "Transaction not found" });
-    }
-
+    const { id } = req.params;
+    if (!id) return res.status(400).json({ message: "Transaction ID is required" });
+    const result = await transactionService.getTransactionById(Number(id));
+    if (!result) return res.status(404).json({ message: "Transaction not found" });
     res.json(result);
-  } catch {
+  } catch (error) {
     res.status(500).json({ message: "Error retrieval" });
   }
 };

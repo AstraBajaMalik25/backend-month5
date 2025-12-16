@@ -1,7 +1,13 @@
 model Store {
-  id        String   @id @default(uuid()) @db.Uuid
+  id        Int      @id @default(autoincrement())
   name      String
   address   String?
   createdAt DateTime @default(now())
   deletedAt DateTime?
+
+  userId    Int?       // 👈 FK ke User (nullable dulu)
+  user      User?    @relation(fields: [userId], references: [id])
+
+  products Product[]
+
 }

@@ -63,4 +63,4 @@ export const searchProducts = async (name?: string, maxPrice?: number): Promise<
     result = result.filter(p => p.price.toNumber() <= maxPrice);
   }
   return result;
-};
+};  
