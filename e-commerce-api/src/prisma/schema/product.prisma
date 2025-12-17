@@ -8,6 +8,7 @@ model Product {
   updatedAt   DateTime @updatedAt
   deletedAt   DateTime?
   transactionItems TransactionItem[]
+  image  String?
 
 
   categoryId Int

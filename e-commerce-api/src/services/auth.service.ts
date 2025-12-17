@@ -8,7 +8,7 @@ const JWT_SECRET = process.env.JWT_SECRET || 'secret_kunci_rahasia';
    REGISTER (REAL)
 ========================= */
 export const register = async (data: {
-  name: string;
+  username: string;
   email: string;
   password: string;
   role?: string;
@@ -25,7 +25,7 @@ export const register = async (data: {
 
   return prisma.user.create({
     data: {
-      name: data.name,
+      username: data.username,
       email: data.email,
       password: hashedPassword,
       role: data.role || 'USER',

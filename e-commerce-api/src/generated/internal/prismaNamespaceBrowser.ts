@@ -51,6 +51,7 @@ export const AnyNull = runtime.AnyNull
 
 
 export const ModelName = {
+  Profile: 'Profile',
   Transaction: 'Transaction',
   TransactionItem: 'TransactionItem',
   User: 'User',
@@ -73,6 +74,21 @@ export const TransactionIsolationLevel = {
 } as const
 
 export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+export const ProfileScalarFieldEnum = {
+  id: 'id',
+  fullName: 'fullName',
+  phone: 'phone',
+  address: 'address',
+  gender: 'gender',
+  image: 'image',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+} as const
+
+export type ProfileScalarFieldEnum = (typeof ProfileScalarFieldEnum)[keyof typeof ProfileScalarFieldEnum]
 
 
 export const TransactionScalarFieldEnum = {
@@ -100,7 +116,7 @@ export type TransactionItemScalarFieldEnum = (typeof TransactionItemScalarFieldE
 
 export const UserScalarFieldEnum = {
   id: 'id',
-  name: 'name',
+  username: 'username',
   email: 'email',
   password: 'password',
   role: 'role',
@@ -129,6 +145,7 @@ export const ProductScalarFieldEnum = {
   createdAt: 'createdAt',
   updatedAt: 'updatedAt',
   deletedAt: 'deletedAt',
+  image: 'image',
   categoryId: 'categoryId',
   storeId: 'storeId'
 } as const
@@ -156,18 +173,18 @@ export const SortOrder = {
 export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-export const NullsOrder = {
-  first: 'first',
-  last: 'last'
-} as const
-
-export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
-
-
 export const QueryMode = {
   default: 'default',
   insensitive: 'insensitive'
 } as const
 
 export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+export const NullsOrder = {
+  first: 'first',
+  last: 'last'
+} as const
+
+export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 

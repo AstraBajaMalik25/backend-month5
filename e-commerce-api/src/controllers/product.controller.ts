@@ -15,7 +15,25 @@ export const getProductById = asyncHandler(async (req: Request, res: Response) =
 });
 
 export const createProduct = asyncHandler(async (req: Request, res: Response) => {
-  const product = await ProductService.createProduct(req.body);
+  const file = req.file; // Ambil file dari request
+  
+  if (!file) {
+      return res.status(400).json({ message: "Image is required" });
+  }
+
+  // Buat URL relatif untuk disimpan di DB
+  const imageUrl = `/public/uploads/${file.filename}`;
+
+  // Gabungkan data body dengan URL gambar
+  const productData = {
+      ...req.body,
+      price: Number(req.body.price), // Konversi manual karena form-data mengirim string
+      stock: Number(req.body.stock),
+      categoryId: Number(req.body.categoryId),
+      image: imageUrl
+  };
+
+  const product = await ProductService.createProduct(productData);
   return successResponse(res, 'Produk berhasil ditambahkan', product, null, 201);
 });
 

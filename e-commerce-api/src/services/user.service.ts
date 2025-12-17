@@ -13,7 +13,7 @@ export const getUserById = async (id: number) => {
 };
 
 export const createUser = async (data: {
-  name: string;
+  username: string;
   email: string;
 }) => {
   return prisma.user.create({
@@ -22,7 +22,7 @@ export const createUser = async (data: {
 };
 
 export const updateUser = async (id: number, data: {
-  name?: string;
+  username?: string;
   email?: string;
 }) => {
   return prisma.user.update({

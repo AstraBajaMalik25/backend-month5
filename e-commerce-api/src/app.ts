@@ -7,6 +7,7 @@ import transactionRoutes from "./routes/transaction.route";
 import userRoutes from './routes/user.route';
 import { errorHandler } from './middlewares/error.handler';
 import authRoutes from './routes/auth.route';
+import profileRoutes from './routes/profile.route';
 
 
 const app = express();
@@ -16,7 +17,7 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
 
-// Custom middleware (dari Hari 4)
+// Custom Middleware
 app.use((req, res, next) => {
   req.startTime = Date.now();
   const apiKey = req.headers['x-api-key'] as string;
@@ -33,21 +34,16 @@ app.get('/', (req, res) => {
 
 app.use('/api', productRoutes);
 
-// Error handler harus di paling bawah!
-// Middleware error handling dengan 4 parameter (`err, req, res, next`) harus selalu 
-// diletakkan PALING AKHIR di antara semua middleware dan route lainnya. 
-// Ini memastikan bahwa semua error dari route atau middleware sebelumnya 
-// dapat ditangkap dan diproses secara terpusat.
+
 app.use(errorHandler);
 
 app.use("/api", transactionRoutes);
 
 app.use('/api', userRoutes);
 
-app.use('/api/v1', authRoutes);
+app.use('/api', authRoutes);
 
-app.use('/api/auth', authRoutes)
-
+app.use('/api', profileRoutes); 
 
 
 

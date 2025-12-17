@@ -1,0 +1,17 @@
+
+model Profile {
+  id        Int    @id @default(autoincrement())
+  fullName  String
+  phone     String?
+  address   String?
+  gender    String
+  image     String?
+
+  userId    Int    @unique
+  user      User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  
+}
